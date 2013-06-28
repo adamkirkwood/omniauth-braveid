@@ -1,2 +1,2 @@
-require "omniauth-brave_id/version"
-require 'omniauth/strategies/brave_id'
+require "omniauth-braveid/version"
+require 'omniauth/strategies/braveid'
