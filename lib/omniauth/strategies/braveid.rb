@@ -5,13 +5,14 @@ module OmniAuth
   module Strategies
     class BraveId < OmniAuth::Strategies::OAuth2
 
-      DEFAULT_PROVIDER_URL = 'http://localhost:3000'
+      DEFAULT_PROVIDER_URL = 'https://brave-id.herokuapp.com'
       STRATEGY_NAME = 'brave_id'
 
-      client_options = {
+      option :name, :brave_id
+      option :client_options, {
         :site =>  DEFAULT_PROVIDER_URL,
-        :authorize_url => "#{DEFAULT_PROVIDER_URL}/oauth/#{STRATEGY_NAME}/authorize",
-        :access_token_url => "#{DEFAULT_PROVIDER_URL}/oauth/#{STRATEGY_NAME}/access_token"
+        :authorize_url => "#{DEFAULT_PROVIDER_URL}/oauth/authorize",
+        :access_token_url => "#{DEFAULT_PROVIDER_URL}/oauth/token"
       }
 
       protected
