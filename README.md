@@ -18,7 +18,21 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+First start by adding this gem to your Gemfile:
+
+```ruby
+gem 'omniauth-braveid'
+```
+
+Next, tell OmniAuth about this provider. For a Rails app, your `config/initializers/omniauth.rb` file should look like this:
+
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :brave_id, "CLIENT_ID", "CLIENT_SECRET"
+end
+```
+
+Replace CLIENT_ID and CLIENT_SECRET with the appropriate values you obtained from https://brave-id.herokuapp.com earlier.
 
 ## Contributing
 
