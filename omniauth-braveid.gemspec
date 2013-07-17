@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["adam@xyentific.com"]
   spec.description   = %q{OmniAuth strategy for BraveID}
   spec.summary       = spec.description
-  spec.homepage      = ""
+  spec.homepage      = "http://github.com/adamkirkwood/omniauth-braveid"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
