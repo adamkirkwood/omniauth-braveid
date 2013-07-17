@@ -16,29 +16,35 @@ module OmniAuth
       }
 
       protected
-
-      def user_data
-        @data ||= MultiJson.decode(@access_token.get("/auth/user"))
-      end
-
       def request_phase
         options[:scope] ||= 'basic'
         options[:response_type] ||= 'code'
         super
       end
-
-      def user_hash
-        user_data
+      
+      uid {
+        raw_info['uid']
+      }
+      
+      info do
+        {
+          :email => raw_info['email'],
+          :characters => raw_info['characters']
+        }
       end
-
+      
+      extra do
+        {
+          :raw_info => raw_info
+        }
+      end
+      
       def raw_info
-        @data ||= access_token.params["user"]
-        unless @data
-          access_token.options[:mode] = :query
-          access_token.options[:param_name] = "access_token"
-          @data ||= access_token.get('/oauth/user').parsed || {}
-        end
-        @data
+        access_token.options[:mode] = :query
+        access_token.options[:param_name] = "access_token"
+        @raw_info ||= MultiJson.decode(access_token.get('/oauth/user').body)
+      rescue ::Errno::ETIMEDOUT
+        raise ::Timeout::Error
       end
 
     end
