@@ -28,7 +28,7 @@ Next, tell OmniAuth about this provider. For a Rails app, your `config/initializ
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :brave_id, "CLIENT_ID", "CLIENT_SECRET"
+  provider :brave_id, "CLIENT_ID", "CLIENT_SECRET", scope: 'basic'
 end
 ```
 
