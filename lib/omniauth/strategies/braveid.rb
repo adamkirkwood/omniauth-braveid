@@ -38,11 +38,11 @@ module OmniAuth
           :raw_info => raw_info
         }
       end
-      
+
       def raw_info
         access_token.options[:mode] = :query
         access_token.options[:param_name] = "access_token"
-        @raw_info ||= MultiJson.decode(access_token.get('/oauth/user').body)
+        @raw_info ||= MultiJson.decode(access_token.get('/api/me').body)
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
