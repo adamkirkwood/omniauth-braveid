@@ -42,7 +42,7 @@ module OmniAuth
       def raw_info
         access_token.options[:mode] = :query
         access_token.options[:param_name] = "access_token"
-        @raw_info ||= MultiJson.decode(access_token.get('/api/me').body)
+        @raw_info ||= MultiJson.decode(access_token.get('/api/me', :headers => { 'Accept' => 'application/vnd.braveid.v3' }).body)
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
