@@ -21,18 +21,18 @@ module OmniAuth
         options[:response_type] ||= 'code'
         super
       end
-      
+
       uid {
         raw_info['uid']
       }
-      
+
       info do
         {
           :email => raw_info['email'],
-          :characters => raw_info['characters']
+          :pilots => raw_info['pilots']
         }
       end
-      
+
       extra do
         {
           :raw_info => raw_info
