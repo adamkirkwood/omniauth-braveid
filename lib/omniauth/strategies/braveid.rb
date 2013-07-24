@@ -29,7 +29,7 @@ module OmniAuth
       info do
         {
           :email => raw_info['email'],
-          :pilots => raw_info['pilots']
+          :pilot => raw_info['pilot'] || {}
         }
       end
 
@@ -42,7 +42,7 @@ module OmniAuth
       def raw_info
         access_token.options[:mode] = :query
         access_token.options[:param_name] = "access_token"
-        @raw_info ||= MultiJson.decode(access_token.get('/api/me', :headers => { 'Accept' => 'application/vnd.braveid.v3' }).body)
+        @raw_info ||= MultiJson.decode(access_token.get('/api/me', :headers => { 'Accept' => 'application/vnd.braveid.v1' }).body)
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
